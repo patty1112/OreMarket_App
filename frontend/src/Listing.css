@@ -1,0 +1,18 @@
+.listing-box {
+    border: 2px solid #ccc; /* Border style */
+    border-radius: 5px; /* Rounded corners */
+    padding: 20px; /* Padding inside the box */
+  }
+  
+  .listing-box h2 {
+    margin-top: 0; /* Remove default margin */
+  }
+  
+  .listing-box article {
+    margin-bottom: 20px; /* Spacing between articles */
+  }
+  
+  .listing-box article:last-child {
+    margin-bottom: 0; /* Remove spacing for last article */
+  }
+  

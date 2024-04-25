@@ -1,14 +1,69 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import Layout from './Layout';
 import reportWebVitals from './reportWebVitals';
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import CreateTodo from "./CreateTodo";
+import Listing from "./Listing";
+import LoadTodo from "./LoadTodo";
+import ListProjects, {listProjects} from "./ListProjects"
+import CreateProject, {createProject} from "./CreateProject"
+import DisplayProject, {loadProject} from "./DisplayProject"
+import Listing2 from './Listing';
+// Using the createBrowserRouter method to create the router provider
+// It takes a list of objects representing the routes in the application
+// Nesting routes via the `children` property embeds the rendered `element`s. So, for example
+// `<App />` will render as a wrapper around the `<CreateForm />` or `<Listing />` components for
+// those matching routes.
+const router = createBrowserRouter([
+	{
+		path: "/",
+		element: <Layout />,
+		children: [
+			{
+				path: "/projects",
+				element: <ListProjects/>,
+				loader: listProjects,
+			},
+			{
+				path: "/project/new",
+				element: <CreateProject/>
+			},
+			{
+				path: "/project/:projectID/",
+				element: <Listing/>,
+				children: [
+					{
+						path: "Todo/new",
+						element: <CreateTodo />,
+					},
+					{
+						path: "Todo/:todoId",
+						element: <LoadTodo />,
+					},
+				]
+			},
+		]
+	}
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+	<React.StrictMode>
+		<header className="navbar"> {/* Apply the 'navbar' class */}
+    <div>
+        <a href="/" className="navbar-button">Home</a>
+        <a href="/project/new" className="navbar-button">New Project</a>
+		<a href="/projects" className="navbar-button">All Projects</a>
+        {/* Add more buttons as needed */}
+    </div>
+</header>
+		<RouterProvider router={router} />
+		<footer className="footer"> {/* Apply the 'footer' class */}
+        	<p>Created By: <br></br> Patrick Maes</p>
+      	</footer>
+	</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

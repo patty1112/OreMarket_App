@@ -1,0 +1,6 @@
+.todo-box {
+    border: 2px solid #ccc; /* Border style */
+    padding: 20px; /* Padding around the box */
+    width: 300px; /* Width of the box */
+    margin: 0 auto; /* Centering the box horizontally */
+}

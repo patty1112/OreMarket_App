@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.navbar {
+  background-color: #333; /* Darker color for the navbar */
+  color: #fff; /* Text color for navbar */
+  padding: 10px;
+}
+.navbar-button {
+  background-color: #555; /* Darker color for buttons */
+  color: #fff; /* Text color for buttons */
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px; /* Add some space between buttons */
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.navbar-button:hover {
+  background-color: #777; /* Darker color for buttons on hover */
+}
