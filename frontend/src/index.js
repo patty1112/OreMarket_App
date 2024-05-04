@@ -52,13 +52,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
 		<header className="navbar"> {/* Apply the 'navbar' class */}
-    <div>
-        <a href="/" className="navbar-button">Home</a>
-        <a href="/project/new" className="navbar-button">New Project</a>
-		<a href="/projects" className="navbar-button">All Projects</a>
-        {/* Add more buttons as needed */}
-    </div>
-</header>
+    	<div>
+			<a href="/" className="navbar-button">Home</a>
+			<a href="/project/new" className="navbar-button">New Project</a>
+			<a href="/projects" className="navbar-button">All Projects</a>
+			{/* Add more buttons as needed */}
+		</div>
+		</header>
 		<RouterProvider router={router} />
 		<footer className="footer"> {/* Apply the 'footer' class */}
         	<p>Created By: <br></br> Patrick Maes</p>
