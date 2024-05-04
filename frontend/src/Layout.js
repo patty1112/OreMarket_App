@@ -51,7 +51,7 @@ function Layout() {
   };
   return (
     <>
-      <h1>TODO App</h1>
+      <h1>Ore Market</h1>
       
       <Outlet />
     </>
