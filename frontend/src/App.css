@@ -1,6 +1,14 @@
 .App {
   text-align: center;
 }
+.layout-container {
+  display: flex;
+}
+
+.column {
+  flex: 1;
+  padding: 20px;
+}
 
 .App-logo {
   height: 40vmin;
