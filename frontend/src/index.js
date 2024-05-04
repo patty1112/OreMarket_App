@@ -9,8 +9,7 @@ import Listing from "./Listing";
 import LoadTodo from "./LoadTodo";
 import ListProjects, {listProjects} from "./ListProjects"
 import CreateProject, {createProject} from "./CreateProject"
-import DisplayProject, {loadProject} from "./DisplayProject"
-import Listing2 from './Listing';
+import CreateUser from "./CreateUser"
 // Using the createBrowserRouter method to create the router provider
 // It takes a list of objects representing the routes in the application
 // Nesting routes via the `children` property embeds the rendered `element`s. So, for example
@@ -20,32 +19,34 @@ const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <Layout />,
+	},
+	{
+		path: "/signup",
+		element: <CreateUser/>
+	},
+	{
+		path: "/projects",
+		element: <ListProjects/>,
+		loader: listProjects,
+	},
+	{
+		path: "/project/new",
+		element: <CreateProject/>
+	},
+	{
+		path: "/project/:projectID/",
+		element: <Listing/>,
 		children: [
 			{
-				path: "/projects",
-				element: <ListProjects/>,
-				loader: listProjects,
+				path: "Todo/new",
+				element: <CreateTodo />,
 			},
 			{
-				path: "/project/new",
-				element: <CreateProject/>
-			},
-			{
-				path: "/project/:projectID/",
-				element: <Listing/>,
-				children: [
-					{
-						path: "Todo/new",
-						element: <CreateTodo />,
-					},
-					{
-						path: "Todo/:todoId",
-						element: <LoadTodo />,
-					},
-				]
+				path: "Todo/:todoId",
+				element: <LoadTodo />,
 			},
 		]
-	}
+	},
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -53,15 +54,17 @@ root.render(
 	<React.StrictMode>
 	  <header className="navbar"> {/* Apply the 'navbar' class */}
 		<div className="navbar-items">
-		  <img src={require("./minesLogo.jpg")} alt="logo" className="navbar-logo" />
-		  <a href="/" className="navbar-button">Sign Up</a>
-		  <a href="/project/new" className="navbar-button">Login</a>
-		  <a href="/projects" className="navbar-button">My Items</a>
-		  <a href="/projects" className="navbar-button">Create Item</a>
-		  <a href="/projects" className="navbar-button">All Items</a>
-		  <div className="cart-wrapper">
+		<a href="/">
+			<img src={require("./minesLogo.jpg")} alt="logo" className="navbar-logo" />	
+		</a>
+		<a href="/signup" className="navbar-button">Sign Up</a>
+		<a href="/project/new" className="navbar-button">Login</a>
+		<a href="/projects" className="navbar-button">My Items</a>
+		<a href="/projects" className="navbar-button">Create Item</a>
+		<a href="/projects" className="navbar-button">All Items</a>
+		<div className="cart-wrapper">
 			<a href="/projects" className="navbar-button">My Cart</a>
-		  </div>
+		</div>
 		  {/* Add more buttons as needed */}
 		</div>
 	  </header>
