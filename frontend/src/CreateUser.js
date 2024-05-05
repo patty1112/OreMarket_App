@@ -45,24 +45,21 @@ function SignUp() {
     };
 
     return (
-        <div className="container">
-            <div className="form-container">
-                <h2>Sign Up</h2>
-                {message && <p>{message}</p>}
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="username">Username:</label>
-                    <input type="text" id="username" name="username" value={username} onChange={handleInputChange} required />
-                    <label htmlFor="email">Email:</label>
-                    <input type="email" id="email" name="email" value={email} onChange={handleInputChange} required />
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" name="password" value={password} onChange={handleInputChange} required />
-                    <button type="submit">Sign Up</button>
-                </form>
-            </div>
-            <div className="info-container">
-                <h3>Additional Information</h3>
-                <p>Here you can add any additional information or content you want to display in the right column.</p>
-            </div>
+        <div>
+            <h2>Sign Up</h2>
+            {message && <p>{message}</p>}
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="username">Username:</label>
+                <input type="text" id="username" name="username" value={username} onChange={handleInputChange} required />
+                <br />
+                <label htmlFor="email">Email:</label>
+                <input type="email" id="email" name="email" value={email} onChange={handleInputChange} required />
+                <br />
+                <label htmlFor="password">Password:</label>
+                <input type="password" id="password" name="password" value={password} onChange={handleInputChange} required />
+                <br />
+                <button type="submit">Sign Up</button>
+            </form>
         </div>
     );
 }

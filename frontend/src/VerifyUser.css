@@ -1,0 +1,28 @@
+/* Assuming your login button has a class of 'login-button' */
+button[type="button"] {
+    max-width: 300px; /* Adjust the width as needed */
+}
+
+/* Assuming your input fields have a class of 'input-field' */
+input[type="text"],
+input[type="password"] {
+    width: 150px; /* Same width as the button */
+    /* Add other styling properties as needed */
+}
+
+/* Container for login form and additional information */
+.login-container {
+    display: flex;
+}
+
+/* Style for the left column */
+.login-form {
+    flex: 1;
+    padding-right: 20px; /* Adjust spacing between columns */
+}
+
+/* Style for the right column */
+.additional-info {
+    flex: 1;
+    /* Add styling for the right column */
+}

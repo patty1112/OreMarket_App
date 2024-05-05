@@ -10,6 +10,7 @@ import LoadTodo from "./LoadTodo";
 import ListProjects, {listProjects} from "./ListProjects"
 import CreateProject, {createProject} from "./CreateProject"
 import CreateUser from "./CreateUser"
+import VerifyUser from "./VerifyUser"
 // Using the createBrowserRouter method to create the router provider
 // It takes a list of objects representing the routes in the application
 // Nesting routes via the `children` property embeds the rendered `element`s. So, for example
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
 	{
 		path: "/signup",
 		element: <CreateUser/>
+	},
+	{
+		path: "login",
+		element: <VerifyUser/>
 	},
 	{
 		path: "/projects",
@@ -58,7 +63,7 @@ root.render(
 			<img src={require("./minesLogo.jpg")} alt="logo" className="navbar-logo" />	
 		</a>
 		<a href="/signup" className="navbar-button">Sign Up</a>
-		<a href="/project/new" className="navbar-button">Login</a>
+		<a href="/login" className="navbar-button">Login</a>
 		<a href="/projects" className="navbar-button">My Items</a>
 		<a href="/projects" className="navbar-button">Create Item</a>
 		<a href="/projects" className="navbar-button">All Items</a>
