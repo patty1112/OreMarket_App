@@ -4,6 +4,9 @@ import ProjectsRouter from "./projects.js";
 import TodosRouter from "./todos.js";
 import { MongoClient } from "mongodb";
 import UsersRouter from "./users.js";
+import ProductsRouter from "./products.js";
+import OrdersRouter from "./orders.js";
+import ReviewsRouter from "./reviews.js";
 
 async function connect() {
 	const client = new MongoClient("mongodb://localhost:27017");
@@ -20,6 +23,9 @@ app.use(express.json());
 app.use("/project", ProjectsRouter);
 app.use("/todos", TodosRouter);
 app.use("/users", UsersRouter)
+app.use("/products", ProductsRouter)
+app.use("/orders", OrdersRouter)
+app.use("/reviews", ReviewsRouter)
 
 const database = await connect();
 app.set("db", database);
