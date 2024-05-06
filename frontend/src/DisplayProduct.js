@@ -1,8 +1,8 @@
 import { useLoaderData, Outlet } from "react-router-dom";
 
-async function loadProject(request) {
-	const projectId = request.params.projectID;
-	const response = await fetch(`http://localhost:3001/project/${projectId}`, {
+async function loadProduct(request) {
+	const productId = request.params.productID;
+	const response = await fetch(`http://localhost:3001/product/${productId}`, {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -12,16 +12,16 @@ async function loadProject(request) {
 	return await response.json();
 }
 
-export default function Project() {
-	const project = useLoaderData();
+export default function Product() {
+	const product = useLoaderData();
 	return (
 		<>
 			<article>
-				<h1>{project.projectTitle}</h1>
+				<h1>{product.productTitle}</h1>
 			</article>
 			<Outlet />
 		</>
 	)
 }
 
-export { loadProject };
+export { loadProduct };

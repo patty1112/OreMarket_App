@@ -3,12 +3,12 @@ import { BASE_URL } from "./utils";
 import { Link, useParams } from "react-router-dom";
 
 export default function CreateForm() {
-    const { projectID } = useParams();
+    const { productID } = useParams();
     const initialFormData = {
         title: '',
         description: '',
         completed: false,
-        projectID: projectID,
+        productID: productID,
     };
 
     const initialResultMessage = {
@@ -29,7 +29,7 @@ export default function CreateForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const result = await fetch(`${BASE_URL}/project/${projectID}/todos/new`, {
+        const result = await fetch(`${BASE_URL}/products/${productID}/todos/new`, {
             method: "POST",
             mode: "cors",
             headers: {
@@ -82,7 +82,7 @@ export default function CreateForm() {
                 {message.msg ? (
                     <>
                         <label>{message.msg}</label> <br />
-                        <Link to={`/project/${projectID}/Todo/${message.newId}`}>Newly created Todo</Link>
+                        <Link to={`/product/${productID}/Todo/${message.newId}`}>Newly created Todo</Link>
                     </>
                 ) : null}
             </form>

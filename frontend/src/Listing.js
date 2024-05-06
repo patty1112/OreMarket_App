@@ -3,11 +3,11 @@ import { Link, useParams, Outlet } from "react-router-dom";
 import "./Listing.css";
 
 export default function Listing2() {
-    const { projectID } = useParams();
+    const { productID } = useParams();
     const [todoList, setTodoList] = useState([]);
     useEffect(() => {
         async function loadTodos() {
-            const result = await fetch(`http://localhost:3001/project/${projectID}`, {
+            const result = await fetch(`http://localhost:3001/product/${productID}`, {
                 method: "GET",
                 mode: "cors",
                 headers: {
@@ -19,13 +19,13 @@ export default function Listing2() {
         }
 
         loadTodos();
-    }, [projectID]);
+    }, [productID]);
 
     return (
         <>
 			<Outlet />
-            {projectID && (
-                <Link to={`/project/${projectID}/todo/new`}>
+            {productID && (
+                <Link to={`/product/${productID}/todo/new`}>
                     <button>New Todo</button>
                 </Link>
             )}
@@ -39,7 +39,7 @@ export default function Listing2() {
                         </Link>
 						<p>{item.title}</p>
                         <p>{item.description}</p>
-						<p>{item.projectID}</p>
+						<p>{item.productID}</p>
                     </article>
                 </div>
             ))}

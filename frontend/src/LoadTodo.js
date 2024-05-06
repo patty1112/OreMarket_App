@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import './LoadTodo.css'
-async function loadSingleTodo(projectID, todoId) {
+async function loadSingleTodo(productID, todoId) {
 	try {
 		const response = await fetch(
-			`http://localhost:3001/project/${projectID}/todos/${todoId}`
+			`http://localhost:3001/product/${productID}/todos/${todoId}`
 		);
 		const data = await response.json();
 		return data;
@@ -15,17 +15,17 @@ async function loadSingleTodo(projectID, todoId) {
 }
 
 export default function SingleTodo() {
-	const { projectID, todoId } = useParams();
+	const { productID, todoId } = useParams();
 	const [todo, setTodo] = useState(null);
 
 	useEffect(() => {
 		const fetchTodo = async () => {
-			const loadedTodo = await loadSingleTodo(projectID, todoId);
+			const loadedTodo = await loadSingleTodo(productID, todoId);
 			setTodo(loadedTodo);
 		};
 
 		fetchTodo();
-	}, [projectID, todoId]);
+	}, [productID, todoId]);
 
 	return (
 		<div className="todo-box"> {/* Apply todo-box class */}

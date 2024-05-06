@@ -7,12 +7,12 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import CreateTodo from "./CreateTodo";
 import Listing from "./Listing";
 import LoadTodo from "./LoadTodo";
-import ListProjects, {listProjects} from "./ListProjects"
-import CreateProject, {createProject} from "./CreateProject"
+import ListProducts, {listProducts} from "./ListProducts"
+import CreateProduct, {createProduct} from "./CreateProduct"
 import CreateUser from "./CreateUser"
 import VerifyUser from "./VerifyUser"
 // Using the createBrowserRouter method to create the router provider
-// It takes a list of objects representing the routes in the application
+// It takes a list of obducts representing the routes in the application
 // Nesting routes via the `children` property embeds the rendered `element`s. So, for example
 // `<App />` will render as a wrapper around the `<CreateForm />` or `<Listing />` components for
 // those matching routes.
@@ -30,16 +30,16 @@ const router = createBrowserRouter([
 		element: <VerifyUser/>
 	},
 	{
-		path: "/projects",
-		element: <ListProjects/>,
-		loader: listProjects,
+		path: "/products",
+		element: <ListProducts/>,
+		loader: listProducts,
 	},
 	{
-		path: "/project/new",
-		element: <CreateProject/>
+		path: "/product/new",
+		element: <CreateProduct/>
 	},
 	{
-		path: "/project/:projectID/",
+		path: "/product/:productID/",
 		element: <Listing/>,
 		children: [
 			{
@@ -64,11 +64,11 @@ root.render(
 		</a>
 		<a href="/users/signup" className="navbar-button">Sign Up</a>
 		<a href="/login" className="navbar-button">Login</a>
-		<a href="/projects" className="navbar-button">My Items</a>
-		<a href="/project/new" className="navbar-button">Create Item</a>
-		<a href="/projects" className="navbar-button">All Items</a>
+		<a href="/products" className="navbar-button">My Items</a>
+		<a href="/product/new" className="navbar-button">Create Item</a>
+		<a href="/products" className="navbar-button">All Items</a>
 		<div className="cart-wrapper">
-			<a href="/projects" className="navbar-button">My Cart</a>
+			<a href="/products" className="navbar-button">My Cart</a>
 		</div>
 		  {/* Add more buttons as needed */}
 		</div>
