@@ -1,7 +1,5 @@
 import express from "express";
 import cors from "cors";
-import ProjectsRouter from "./projects.js";
-import TodosRouter from "./todos.js";
 import { MongoClient } from "mongodb";
 import UsersRouter from "./users.js";
 import ProductsRouter from "./products.js";
@@ -20,8 +18,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/project", ProjectsRouter);
-app.use("/todos", TodosRouter);
 app.use("/users", UsersRouter)
 app.use("/products", ProductsRouter)
 app.use("/orders", OrdersRouter)
