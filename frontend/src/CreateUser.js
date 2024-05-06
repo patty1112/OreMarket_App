@@ -21,7 +21,7 @@ function SignUp() {
         e.preventDefault();
         try {
             // Make POST request to create new user
-            const response = await fetch('http://localhost:3001/signup', {
+            const response = await fetch('http://localhost:3001/users/signup', {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
