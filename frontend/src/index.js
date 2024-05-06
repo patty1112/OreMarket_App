@@ -22,7 +22,7 @@ const router = createBrowserRouter([
 		element: <Layout />,
 	},
 	{
-		path: "/signup",
+		path: "/users/signup",
 		element: <CreateUser/>
 	},
 	{
@@ -62,7 +62,7 @@ root.render(
 		<a href="/">
 			<img src={require("./minesLogo.jpg")} alt="logo" className="navbar-logo" />	
 		</a>
-		<a href="/signup" className="navbar-button">Sign Up</a>
+		<a href="/users/signup" className="navbar-button">Sign Up</a>
 		<a href="/login" className="navbar-button">Login</a>
 		<a href="/projects" className="navbar-button">My Items</a>
 		<a href="/project/new" className="navbar-button">Create Item</a>
