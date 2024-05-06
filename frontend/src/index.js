@@ -65,7 +65,7 @@ root.render(
 		<a href="/signup" className="navbar-button">Sign Up</a>
 		<a href="/login" className="navbar-button">Login</a>
 		<a href="/projects" className="navbar-button">My Items</a>
-		<a href="/projects" className="navbar-button">Create Item</a>
+		<a href="/project/new" className="navbar-button">Create Item</a>
 		<a href="/projects" className="navbar-button">All Items</a>
 		<div className="cart-wrapper">
 			<a href="/projects" className="navbar-button">My Cart</a>
