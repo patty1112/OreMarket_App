@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 function Cart() {
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const cart = localStorage.getItem('cart');
@@ -23,10 +25,10 @@ function Cart() {
         if (updatedCart[index].quantity > 1) {
             updatedCart[index].quantity -= 1;
         } else {
-            updatedCart.splice(index, 1); // Remove item at the specified index
+            updatedCart.splice(index, 1);
         }
-        setCartItems(updatedCart); // Update state
-        localStorage.setItem('cart', JSON.stringify(updatedCart)); // Update local storage
+        setCartItems(updatedCart);
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
         calculateTotal(updatedCart);
     };
 
@@ -42,6 +44,9 @@ function Cart() {
                     total: totalPrice
                 })
             });
+            if (!response.ok) {
+                throw new Error('Failed to place order');
+            }
             const data = await response.json();
             alert(`Order placed successfully! Order ID: ${data.orderId}`);
             // Clear cart after purchase
@@ -49,13 +54,14 @@ function Cart() {
             localStorage.setItem('cart', JSON.stringify([]));
         } catch (error) {
             console.error('Error placing order:', error);
-            alert('Failed to place order.');
+            alert('Failed to place order. ' + error.message);
         }
     };
 
     return (
         <div>
             <h2>Shopping Cart</h2>
+            {error && <p>Error: {error}</p>}
             {cartItems.length > 0 ? (
                 <>
                     <ul>
@@ -68,7 +74,9 @@ function Cart() {
                         ))}
                     </ul>
                     <h3>Total: ${totalPrice.toFixed(2)}</h3>
-                    <button onClick={handlePurchase}>Purchase</button>
+                    <button onClick={handlePurchase} disabled={loading}>
+                        {loading ? 'Processing...' : 'Purchase'}
+                    </button>
                 </>
             ) : (
                 <p>Your cart is empty.</p>

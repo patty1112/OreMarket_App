@@ -10,7 +10,8 @@ import ListProducts, { listProducts } from "./ListProducts";
 import CreateProduct, { createProduct } from "./CreateProduct";
 import CreateUser from "./CreateUser";
 import VerifyUser from "./VerifyUser";
-import Cart from "./Cart"; // Import the Cart component
+import Cart from "./Cart"; 
+import MyOrders from "./MyOrders"; 
 
 const App = () => {
   // Check if the user is logged in from local storage
@@ -61,6 +62,10 @@ const App = () => {
 	{
 		path: "/cart",
 		element: isLoggedIn ? <Cart /> : <VerifyUser handleLoginSuccess={handleLoginSuccess}/>
+	},
+	{
+		path: "/my-orders",
+		element: <MyOrders />
 	}
   ]);
 
@@ -73,7 +78,7 @@ const App = () => {
           </a>
           {!isLoggedIn && <a href="/users/signup" className="navbar-button">Sign Up</a>}
           {!isLoggedIn && <a href="/login" className="navbar-button">Login</a>}
-          {isLoggedIn && <a href="/products" className="navbar-button">My Items</a>}
+          {isLoggedIn && <a href="/my-orders" className="navbar-button">My Orders</a>}
           {isLoggedIn && <a href="/product/new" className="navbar-button">Create Item</a>}
           {isLoggedIn && <a href="/products" className="navbar-button">All Items</a>}
           <div className="cart-wrapper">
