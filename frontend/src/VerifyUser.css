@@ -1,12 +1,11 @@
 /* Assuming your login button has a class of 'login-button' */
 button[type="button"] {
-    max-width: 300px; /* Adjust the width as needed */
+    max-width: 500px; /* Adjust the width as needed */
 }
 
 /* Assuming your input fields have a class of 'input-field' */
-input[type="text"],
-input[type="password"] {
-    width: 150px; /* Same width as the button */
+input {
+    width: 300px; /* Same width as the button */
     /* Add other styling properties as needed */
 }
 

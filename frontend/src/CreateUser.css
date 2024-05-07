@@ -27,6 +27,7 @@ label {
 input {
     padding: 8px;
     margin-bottom: 12px;
+    width: 100%; /* Add this line */
 }
 
 button {
