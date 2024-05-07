@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./VerifyUser.css"
-function LoginPage() {
+import "./index.js"
+function LoginPage({handleLoginSuccess}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -13,8 +14,19 @@ function LoginPage() {
   };
 
   const handleLogin = () => {
-    // Make GET request with username and password
-    fetch(`/api/login?username=${username}&password=${password}`)
+    // Prepare data object to send
+    const data = {
+      username: username,
+      password: password
+    };
+  
+    // Make POST request with JSON data
+    fetch(`http://localhost:3001/users/${data.username}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -24,12 +36,14 @@ function LoginPage() {
       .then(data => {
         // Handle successful login
         console.log(data); // You might want to do something with the response
+        handleLoginSuccess();
       })
       .catch(error => {
         // Handle login error
         console.error('Error during login:', error);
       });
   };
+  
 
   return (
     <div className="login-container">
