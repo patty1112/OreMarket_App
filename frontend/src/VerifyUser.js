@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import "./VerifyUser.css"
 import "./index.js"
-function LoginPage({handleLoginSuccess}) {
+
+function LoginPage({ handleLoginSuccess }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loginMessage, setLoginMessage] = useState('');
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -19,7 +22,7 @@ function LoginPage({handleLoginSuccess}) {
       username: username,
       password: password
     };
-  
+
     // Make POST request with JSON data
     fetch(`http://localhost:3001/users/${data.username}`, {
       method: 'GET',
@@ -36,14 +39,21 @@ function LoginPage({handleLoginSuccess}) {
       .then(data => {
         // Handle successful login
         console.log(data); // You might want to do something with the response
-        handleLoginSuccess();
+        if (data.password === password) {
+          handleLoginSuccess();
+          setIsLoggedIn(true);
+          setLoginMessage('Login successful');
+          return;
+        }
+        setIsLoggedIn(false);
+        setLoginMessage('Invalid username or password');
       })
       .catch(error => {
         // Handle login error
         console.error('Error during login:', error);
+        setLoginMessage('Error during login');
       });
   };
-  
 
   return (
     <div className="login-container">
@@ -70,10 +80,10 @@ function LoginPage({handleLoginSuccess}) {
           </div>
           <button type="button" onClick={handleLogin}>Login</button>
         </form>
+        {loginMessage && <p>{loginMessage}</p>}
       </div>
       <div className="additional-info">
         {/* Additional information or content */}
-        
       </div>
     </div>
   );
