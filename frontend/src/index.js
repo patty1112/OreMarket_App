@@ -10,6 +10,7 @@ import ListProducts, { listProducts } from "./ListProducts";
 import CreateProduct, { createProduct } from "./CreateProduct";
 import CreateUser from "./CreateUser";
 import VerifyUser from "./VerifyUser";
+import Cart from "./Cart"; // Import the Cart component
 
 const App = () => {
   // Check if the user is logged in from local storage
@@ -57,6 +58,10 @@ const App = () => {
       path: "/products/:productID/",
       element: <Listing />
     },
+	{
+		path: "/cart",
+		element: isLoggedIn ? <Cart /> : <VerifyUser handleLoginSuccess={handleLoginSuccess}/>
+	}
   ]);
 
   return (
@@ -72,7 +77,7 @@ const App = () => {
           {isLoggedIn && <a href="/product/new" className="navbar-button">Create Item</a>}
           {isLoggedIn && <a href="/products" className="navbar-button">All Items</a>}
           <div className="cart-wrapper">
-            <a href="/products" className="navbar-button">My Cart</a>
+            <a href="/cart" className="navbar-button">My Cart</a>
           </div>
         </div>
       </header>
