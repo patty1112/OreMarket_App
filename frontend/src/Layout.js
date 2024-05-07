@@ -48,12 +48,14 @@ function Layout() {
       <div className="layout-container">
         <div className="column">
           {/* Content for the first column */}
-          <h2>Buy and Sell Items!</h2>
+          <img src={require("./minesCampus.jpg")} alt="mines campus"/> 
+          <h2>Buy and Sell Items at Mines!</h2>
 
         </div>
         <div className="column">
           {/* Content for the second column */}
           <h2>Make Connections and Friends...</h2>
+          <img src={require("./minesNetworking.jpg")} alt="mines networking"/>
         </div>
       </div>
     </>
