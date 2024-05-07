@@ -4,9 +4,9 @@ import './index.css';
 import Layout from './Layout';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import CreateTodo from "./CreateTodo";
+
 import Listing from "./Listing";
-import LoadTodo from "./LoadTodo";
+
 import ListProducts, {listProducts} from "./ListProducts"
 import CreateProduct, {createProduct} from "./CreateProduct"
 import CreateUser from "./CreateUser"
@@ -39,18 +39,8 @@ const router = createBrowserRouter([
 		element: <CreateProduct/>
 	},
 	{
-		path: "/product/:productID/",
-		element: <Listing/>,
-		children: [
-			{
-				path: "Todo/new",
-				element: <CreateTodo />,
-			},
-			{
-				path: "Todo/:todoId",
-				element: <LoadTodo />,
-			},
-		]
+		path: "/products/:productID/",
+		element: <Listing/>
 	},
 ]);
 

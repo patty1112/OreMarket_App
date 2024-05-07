@@ -4,10 +4,11 @@ import "./Listing.css";
 
 export default function Listing2() {
     const { productID } = useParams();
-    const [todoList, setTodoList] = useState([]);
+    const [product, setProduct] = useState(null);
+
     useEffect(() => {
-        async function loadTodos() {
-            const result = await fetch(`http://localhost:3001/product/${productID}`, {
+        async function loadProduct() {
+            const result = await fetch(`http://localhost:3001/products/${productID}`, {
                 method: "GET",
                 mode: "cors",
                 headers: {
@@ -15,34 +16,27 @@ export default function Listing2() {
                 },
             });
             const res = await result.json();
-            setTodoList(res); // Assuming `res` is an array of todos
+            setProduct(res); // Assuming `res` is the product object
         }
 
-        loadTodos();
+        loadProduct();
     }, [productID]);
 
     return (
         <>
-			<Outlet />
-            {productID && (
-                <Link to={`/product/${productID}/todo/new`}>
-                    <button>New Todo</button>
-                </Link>
-            )}
-            <h2>All Todos:</h2>
-            {todoList.map((item) => (
-                <div className="listing-box" key={item._id}>
-                    {/* Apply the CSS class to wrap the component */}
-                    <article>
-                        <Link to={`todo/${item._id}`}>
-                            <h3>{item._id}</h3>
-                        </Link>
-						<p>{item.title}</p>
-                        <p>{item.description}</p>
-						<p>{item.productID}</p>
-                    </article>
+            <Outlet />
+            {product ? (
+                <div className="product-details">
+                    <h2>{product.productTitle}</h2>
+                    <img src={product.photo} alt={product.productTitle} style={{ width: '100px', height: '100px' }} />
+                    <p>Description: {product.description}</p>
+                    <p>City: {product.city}</p>
+                    <p>Price: ${product.price}</p>
+                    <p>Contact: {product.contacts}</p>
                 </div>
-            ))}
+            ) : (
+                <p>Loading product details...</p>
+            )}
         </>
     );
 }

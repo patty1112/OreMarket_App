@@ -1,40 +1,59 @@
 import React, { useState } from 'react';
 
 function CreateProduct() {
-    // State to hold product title
-    const [productTitle, setProductTitle] = useState('');
+    // State to hold form data
+    const [formData, setFormData] = useState({
+        productTitle: '',
+        description: '',
+        photo: '',  // Optional field, no need to require
+        city: '',
+        price: '',
+        contact: ''
+    });
+
     // State to hold success or failure message
     const [message, setMessage] = useState('');
 
     // Function to handle input changes
     const handleInputChange = (e) => {
-        const { value } = e.target;
-        setProductTitle(value);
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
     };
 
     // Function to handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!formData.productTitle || !formData.description || !formData.city || !formData.price || !formData.contact) {
+            setMessage('Please fill in all required fields.');
+            return;
+        }
         try {
-            // Make POST request to create product
             const response = await fetch('http://localhost:3001/products/new', {
                 method: 'POST',
-                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ productTitle })
+                body: JSON.stringify(formData)
             });
-            const data = await response.json();
-            console.log('Product created:', data);
-            // Set success message
-            setMessage('Product created successfully!');
-            // Clear product title after successful submission
-            setProductTitle('');
+            if (response.ok) {
+                const result = await response.json();
+                setMessage(`Product created successfully! Product ID: ${result.productId}`);
+                setFormData({
+                    productTitle: '',
+                    description: '',
+                    photo: '',
+                    city: '',
+                    price: '',
+                    contact: ''
+                });
+            } else {
+                throw new Error('Failed to create product');
+            }
         } catch (error) {
-            console.error('Error creating product:', error);
-            // Set failure message
-            setMessage('Error creating product');
+            setMessage('Error creating product: ' + error.message);
         }
     };
 
@@ -43,9 +62,12 @@ function CreateProduct() {
             <h2>Create a New Product</h2>
             {message && <p>{message}</p>}
             <form onSubmit={handleSubmit}>
-                <label htmlFor="productTitle">Product Title:</label>
-                <input type="text" id="productTitle" name="productTitle" value={productTitle} onChange={handleInputChange} required />
-                <br />
+                <input type="text" name="productTitle" placeholder="Product Title" value={formData.productTitle} onChange={handleInputChange} required />
+                <textarea name="description" placeholder="Description" value={formData.description} onChange={handleInputChange} required />
+                <input type="text" name="photo" placeholder="Photo URL (optional)" value={formData.photo} onChange={handleInputChange} />
+                <input type="text" name="city" placeholder="City" value={formData.city} onChange={handleInputChange} required />
+                <input type="text" name="price" placeholder="Price" value={formData.price} onChange={handleInputChange} required />
+                <input type="text" name="contact" placeholder="Contact Details" value={formData.contact} onChange={handleInputChange} required />
                 <button type="submit">Create Product</button>
             </form>
         </div>

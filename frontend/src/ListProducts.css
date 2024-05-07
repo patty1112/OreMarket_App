@@ -1,8 +1,25 @@
-.link-box {
-    display: inline-block;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin: 5px;
-  }
-  
+/* ListProducts.css */
+.product-listing {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap onto the next line */
+  gap: 20px; /* Adds space between items */
+  justify-content: flex-start; /* Aligns items to the start of the container */
+}
+
+.product-item {
+  flex: 0 1 300px; /* Each item can grow and shrink but starts at 300px */
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.product-details {
+  padding: 10px;
+  text-align: center;
+}

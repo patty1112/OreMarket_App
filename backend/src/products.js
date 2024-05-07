@@ -1,10 +1,10 @@
 import { Router } from "express";
 import { ObjectId } from "mongodb";
-import TodosRouter from "./todos.js";
+
 
 const ProjectsRouter = Router();
 
-ProjectsRouter.use("/:productId/todos", TodosRouter);
+
 
 ProjectsRouter.get("/", async (req, res) => {
 	const db = req.app.get("db");
@@ -14,24 +14,39 @@ ProjectsRouter.get("/", async (req, res) => {
 
 ProjectsRouter.get("/:id", async (req, res) => {
     const db = req.app.get("db");
-	const id = new ObjectId(req.params.id).toString();
-    const todos = await db.collection("todos").find({ productID:(id) }).toArray();
-    return res.json(todos);
+    const id = new ObjectId(req.params.id);
+    try {
+        const product = await db.collection("products").findOne({_id: id});
+        if (!product) {
+            res.status(404).json({message: "Product not found"});
+            return;
+        }
+        res.json(product);
+    } catch (error) {
+        res.status(500).json({message: "Internal server error"});
+    }
 });
 
 ProjectsRouter.post("/new", async (req, res) => {
-	const db = req.app.get("db");
+    const db = req.app.get("db");
+    const { productTitle, description, photo, city, price, contact } = req.body;
 
-	try {
-		console.log(req);
-		const result = await db.collection("products").insertOne(req.body);
-		console.log(result);
-		res.status(201).json(result.insertedId);
-	} catch (e) {
-		console.error(e);
-		return res.status(500).end();
-	}
+    try {
+        const result = await db.collection("products").insertOne({
+            productTitle,
+            description,
+            photo,
+            city,
+            price,
+            contact
+        });
+        res.status(201).json({ message: 'Product created successfully', productId: result.insertedId });
+    } catch (error) {
+        console.error('Error creating product:', error);
+        res.status(500).json({ message: 'Error creating product' });
+    }
 });
+
 
 ProjectsRouter.put("/:id", async (req, res) => {
 	req.body._id = new ObjectId(req.params.id);

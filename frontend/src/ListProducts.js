@@ -1,5 +1,5 @@
 import { useLoaderData, Link } from "react-router-dom";
-import './ListProducts.css'; // Import the CSS file
+import './ListProducts.css'; // Ensure the CSS file is imported
 
 async function listProducts() {
     const response = await fetch('http://localhost:3001/products', {
@@ -13,20 +13,26 @@ async function listProducts() {
 }
 
 export default function Listing2() {
-  const list = useLoaderData();
+    const list = useLoaderData();
 
-  return (
-    <>
-      <h2>List of all products:</h2>
-      {list.map((item) => (
-        <article key={item._id}>
-          <Link to={`/product/${item._id}`} className="link-box">
-            <p>{item.productTitle}</p>
-          </Link>
-        </article>
-      ))}
-    </>
-  );
+    return (
+        <>
+            <h2>List of all products:</h2> {/* This ensures the heading is on top */}
+            <div className="product-listing">
+                {list.map((item) => (
+                    <div key={item._id} className="product-item">
+                        <Link to={`/products/${item._id}`}>
+                            <img src={item.photo} alt={item.productTitle} className="product-image" />
+                            <div className="product-details">
+                                <p>{item.productTitle}</p>
+                                <p>Price: ${item.price}</p>
+                            </div>
+                        </Link>
+                    </div>
+                ))}
+            </div>
+        </>
+    );
 }
 
 export { listProducts };
