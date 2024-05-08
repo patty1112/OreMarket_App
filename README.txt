@@ -9,7 +9,10 @@ TEAM MEMBERS:
 1) Were there areas of unexpected complexity? If so, how did you handle them or how did you decide to cut scope?
 	One area of unexpected complexity was tracking state for login and the current user. When using useState alone,
 	the state would refresh whenever the route changed. To solve this, we used the localStorage instead of cookies,
-	since the client needs the state and not the server.
+	since the client needs the state and not the server. And the login process was bit unexpectedly complex, even with 
+	demo code from the class. We decided not doing authentication process in this version, but we did a function for
+	checking the password if they are matching. Also putting an image of the product was unsolvable for the timeframe.
+	we place a textbox for saving a spot for photo for later version.
 
 2) What was the most interesting part of the final project?
 	The most interesting part of the final project was creating the backend and frontend routes, since we had a 
@@ -24,5 +27,6 @@ TEAM MEMBERS:
 	frontend using something like tokens. The process of encryption would have required the backend
 	to encrypt a request's password and compare it to the stored password for that user. It would have 
 	also needed to factor in username somehow to avoid identical passwords being mapped to the same hash.
+	Also we would want to implement functions for user to upload photos of products, and actual purchasing options.
 
 
