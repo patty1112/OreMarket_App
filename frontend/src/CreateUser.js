@@ -45,21 +45,29 @@ function SignUp() {
     };
 
     return (
-        <div>
-            <h2>Sign Up</h2>
-            {message && <p>{message}</p>}
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username:</label>
-                <input type="text" id="username" name="username" value={username} onChange={handleInputChange} required />
-                <br />
-                <label htmlFor="email">Email:</label>
-                <input type="email" id="email" name="email" value={email} onChange={handleInputChange} required />
-                <br />
-                <label htmlFor="password">Password:</label>
-                <input type="password" id="password" name="password" value={password} onChange={handleInputChange} required />
-                <br />
-                <button type="submit">Sign Up</button>
-            </form>
+        <div className='container'>
+            <div className='form-container'>
+                <h2>Sign Up</h2>
+                {message && <p>{message}</p>}
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="username">Username:</label>
+                    <input type="text" id="username" name="username" value={username} onChange={handleInputChange} required />
+                    <br />
+                    <label htmlFor="email">Email:</label>
+                    <input type="email" id="email" name="email" value={email} onChange={handleInputChange} required />
+                    <br />
+                    <label htmlFor="password">Password:</label>
+                    <input type="password" id="password" name="password" value={password} onChange={handleInputChange} required />
+                    <br />
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+                <div className="info-container">
+                    <h1>Additional Information</h1>
+                    <p>- For testing, please do not use a real password.</p>
+                    <p>- Encryption for data storage and authentification is still being implemented.</p>
+                {/* Additional information or content */}
+                </div>
         </div>
     );
 }

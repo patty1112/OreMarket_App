@@ -24,8 +24,8 @@ export default function Listing2() {
                         <Link to={`/products/${item._id}`}>
                             <img src={item.photo} alt={item.productTitle} className="product-image" />
                             <div className="product-details">
-                                <p>{item.productTitle}</p>
-                                <p>Price: ${item.price}</p>
+                                <p><strong>Title:</strong> {item.productTitle}</p>
+                                <p><strong>Price:</strong> ${item.price}</p>
                             </div>
                         </Link>
                     </div>
@@ -34,5 +34,6 @@ export default function Listing2() {
         </>
     );
 }
+
 
 export { listProducts };

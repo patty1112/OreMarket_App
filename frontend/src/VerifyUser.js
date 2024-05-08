@@ -51,7 +51,7 @@ function LoginPage({ handleLoginSuccess }) {
       .catch(error => {
         // Handle login error
         console.error('Error during login:', error);
-        setLoginMessage('Error during login');
+        setLoginMessage('Invalid username or password');
       });
   };
 
@@ -81,9 +81,6 @@ function LoginPage({ handleLoginSuccess }) {
           <button type="button" onClick={handleLogin}>Login</button>
         </form>
         {loginMessage && <p>{loginMessage}</p>}
-      </div>
-      <div className="additional-info">
-        {/* Additional information or content */}
       </div>
     </div>
   );
