@@ -21,12 +21,16 @@ TEAM MEMBERS:
 	to us, so it was interesting to look at how to conditionally render items on the page based on state.
 
 3) If you had more time, what do you wish you could have added to the final project?
-	We definetly wish we could have added authentication and encryption to the final version.
+		We definetly wish we could have added authentication and encryption to the final version.
 	This would have required the use of HTTPS for secure data transmission, the use of an encryption
 	algorithm to secure user information in the database, and the removal of user information from the 
 	frontend using something like tokens. The process of encryption would have required the backend
 	to encrypt a request's password and compare it to the stored password for that user. It would have 
 	also needed to factor in username somehow to avoid identical passwords being mapped to the same hash.
-	Also we would want to implement functions for user to upload photos of products, and actual purchasing options.
+		Also we would want to implement functions for user to upload photos of products, and actual 
+	purchasing options. This might include file system support and card authorizations if the site reaches
+	a secure state. The only route we were not able to implement was the item search, due to time and 
+	complexity. However, there did seem to be some mongodb regex searches that could help implement a 
+	search method.
 
 
