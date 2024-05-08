@@ -25,6 +25,7 @@ export default function Product() {
                 <p>Description: {product.description}</p>
                 <p>City: {product.city}</p>
                 <p>Price: ${product.price}</p>
+                <p>Name of Poster: {product.postedBy}</p>
                 <p>Contact: {product.contact}</p>
             </article>
         </>

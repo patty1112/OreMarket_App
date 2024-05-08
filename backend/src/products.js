@@ -29,10 +29,11 @@ ProjectsRouter.get("/:id", async (req, res) => {
 
 ProjectsRouter.post("/new", async (req, res) => {
     const db = req.app.get("db");
-    const { productTitle, description, photo, city, price, contact } = req.body;
+    const { postedBy, productTitle, description, photo, city, price, contact } = req.body;
 
     try {
         const result = await db.collection("products").insertOne({
+            postedBy,
             productTitle,
             description,
             photo,

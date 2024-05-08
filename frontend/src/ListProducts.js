@@ -19,8 +19,9 @@ export default function Listing2() {
         <>
             <h2>List of all products:</h2> {/* This ensures the heading is on top */}
             <div className="product-listing">
-                {list.map((item) => (
+                {list.map((item, index) => (
                     <div key={item._id} className="product-item">
+                        {<p><strong>Posted by:</strong> {item.postedBy}</p>}
                         <Link to={`/products/${item._id}`}>
                             <img src={item.photo} alt={item.productTitle} className="product-image" />
                             <div className="product-details">
@@ -34,6 +35,5 @@ export default function Listing2() {
         </>
     );
 }
-
 
 export { listProducts };

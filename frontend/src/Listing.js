@@ -48,7 +48,8 @@ export default function Listing() {
                     <p>Description: {product.description}</p>
                     <p>City: {product.city}</p>
                     <p>Price: ${product.price}</p>
-                    <p>Contact: {product.contacts}</p>
+                    <p>Owner of Item/Service: {product.postedBy}</p>
+                    <p>Contact: {product.contact}</p>
                     <button onClick={() => addToCart(product)}>Add to Cart</button>
                 </div>
             ) : (

@@ -44,7 +44,7 @@ function Layout() {
 
   return (
     <>
-      <h1>Ore Market</h1>
+      <h3>Ore Market</h3>
       <div className="layout-container">
         <div className="column">
           {/* Content for the first column */}

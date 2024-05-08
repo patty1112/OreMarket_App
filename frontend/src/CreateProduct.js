@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 function CreateProduct() {
     // State to hold form data
     const [formData, setFormData] = useState({
+        postedBy: '',
         productTitle: '',
         description: '',
         photo: '',  // Optional field, no need to require
@@ -62,6 +63,7 @@ function CreateProduct() {
             <h2>Create a New Product</h2>
             {message && <p>{message}</p>}
             <form onSubmit={handleSubmit}>
+            <input type="text" name="postedBy" placeholder="Posted By: (Name)" value={formData.postedBy} onChange={handleInputChange} required />
                 <input type="text" name="productTitle" placeholder="Product Title" value={formData.productTitle} onChange={handleInputChange} required />
                 <textarea name="description" placeholder="Description" value={formData.description} onChange={handleInputChange} required />
                 <input type="text" name="photo" placeholder="Photo URL (optional)" value={formData.photo} onChange={handleInputChange} />
