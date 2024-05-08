@@ -3,9 +3,9 @@ import cors from "cors";
 import { MongoClient } from "mongodb";
 import ProductsRouter from "./products.js";
 import UsersRouter from "./users.js";
-import ProductsRouter1212 from "./products1212.js";
 import OrdersRouter from "./orders.js"; // Make sure this is correctly pointing to your new orders router file
 import ReviewsRouter from "./reviews.js";
+import AuthRouter from "./authorization.js";
 
 async function connect() {
 	const client = new MongoClient("mongodb://localhost:27017");
@@ -24,6 +24,7 @@ app.use("/users", UsersRouter);
 // app.use("/products", ProductsRouter1212) // Ensure this does not conflict with your other product routes
 app.use("/orders", OrdersRouter); // Use the orders router here
 app.use("/reviews", ReviewsRouter);
+app.use("/authorization", AuthRouter)
 
 const database = await connect();
 app.set("db", database);
