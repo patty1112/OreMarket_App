@@ -43,3 +43,6 @@ code {
   margin-left: auto;
   margin-top: 10px;
 }
+.navbar-username {
+  margin-left: 300px; /* Adjust spacing between username and buttons */
+}

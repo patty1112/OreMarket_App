@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "./VerifyUser.css"
 import "./index.js"
 
+
 function LoginPage({ handleLoginSuccess }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -40,11 +41,11 @@ function LoginPage({ handleLoginSuccess }) {
         // Handle successful login
         console.log(data); // You might want to do something with the response
         if (data.password === password) {
-          handleLoginSuccess();
+          handleLoginSuccess(data.username);
           setIsLoggedIn(true);
           setLoginMessage('Login successful');
           return;
-        }
+        }        
         setIsLoggedIn(false);
         setLoginMessage('Invalid username or password');
       })

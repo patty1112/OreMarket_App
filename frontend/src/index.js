@@ -14,24 +14,29 @@ import Cart from "./Cart";
 import MyOrders from "./MyOrders"; 
 
 const App = () => {
-  // Check if the user is logged in from local storage
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem('isLoggedIn') === 'true'
-  );
-
-  // Update local storage when the login state changes
-  useEffect(() => {
-    localStorage.setItem('isLoggedIn', isLoggedIn);
-  }, [isLoggedIn]);
-
-  const handleLoginSuccess = () => {
-    setIsLoggedIn(true);
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    localStorage.removeItem('isLoggedIn');
-  };
+	// Check if the user is logged in from local storage
+	const [isLoggedIn, setIsLoggedIn] = useState(
+	  localStorage.getItem('isLoggedIn') === 'true'
+	);
+	const [username, setUsername] = useState(localStorage.getItem('username'));
+  
+	// Update local storage when the login state changes
+	useEffect(() => {
+	  localStorage.setItem('isLoggedIn', isLoggedIn);
+	  localStorage.setItem('username', username);
+	}, [isLoggedIn, username]);
+  
+	const handleLoginSuccess = (username) => {
+	  setIsLoggedIn(true);
+	  setUsername(username); // Update username state
+	};
+  
+	const handleLogout = () => {
+	  setIsLoggedIn(false);
+	  setUsername(''); // Clear username state
+	  localStorage.removeItem('isLoggedIn');
+	  localStorage.removeItem('username');
+	};
 
   const router = createBrowserRouter([
     {
@@ -81,6 +86,7 @@ const App = () => {
           {isLoggedIn && <a href="/my-orders" className="navbar-button">My Orders</a>}
           {isLoggedIn && <a href="/product/new" className="navbar-button">Create Item</a>}
           {isLoggedIn && <a href="/products" className="navbar-button">All Items</a>}
+		  {isLoggedIn && <span className="navbar-username">Welcome, {username}</span>}
           <div className="cart-wrapper">
             <a href="/cart" className="navbar-button">My Cart</a>
           </div>
